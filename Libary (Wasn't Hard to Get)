@@ -115,7 +115,7 @@ Window.Position = UDim2.new(0, 20, 0, 20)
 Window.Selectable = true
 Window.Size = UDim2.new(0, 200, 0, 200)
 Window.Image = "rbxassetid://2851926732"
-Window.ImageColor3 = Color3.new(0.0823529, 0.0862745, 0.0901961)
+Window.ImageColor3 = Color3.new(0.988, 0.678, 0.741) 
 Window.ScaleType = Enum.ScaleType.Slice
 Window.SliceCenter = Rect.new(12, 12, 12, 12)
 
@@ -130,7 +130,7 @@ Resizer.Size = UDim2.new(0, 20, 0, 20)
 
 Bar.Name = "Bar"
 Bar.Parent = Window
-Bar.BackgroundColor3 = Color3.new(0.160784, 0.290196, 0.478431)
+Bar.BackgroundColor3 = Color3.new(0.988, 0.678, 0.741) -- Soft pink color
 Bar.BorderSizePixel = 0
 Bar.Position = UDim2.new(0, 0, 0, 5)
 Bar.Size = UDim2.new(1, 0, 0, 15)
@@ -143,16 +143,17 @@ Toggle.Position = UDim2.new(0, 5, 0, -2)
 Toggle.Rotation = 90
 Toggle.Size = UDim2.new(0, 20, 0, 20)
 Toggle.ZIndex = 2
-Toggle.Image = "https://www.roblox.com/Thumbs/Asset.ashx?width=420&height=420&assetId=8159380929"
+Toggle.Image = "https://www.roblox.com/Thumbs/Asset.ashx?width=420&height=420&assetId=6593682268"
+Toggle.ImageColor3 = Color3.new(0.988, 0.678, 0.741)
 
 Base.Name = "Base"
 Base.Parent = Bar
-Base.BackgroundColor3 = Color3.new(0.160784, 0.290196, 0.478431)
+Base.BackgroundColor3 = Color3.new(0.988, 0.678, 0.741)
 Base.BorderSizePixel = 0
 Base.Position = UDim2.new(0, 0, 0.800000012, 0)
 Base.Size = UDim2.new(1, 0, 0, 10)
 Base.Image = "rbxassetid://2851926732"
-Base.ImageColor3 = Color3.new(0.160784, 0.290196, 0.478431)
+Base.ImageColor3 = Color3.new(0.988, 0.678, 0.741)
 Base.ScaleType = Enum.ScaleType.Slice
 Base.SliceCenter = Rect.new(12, 12, 12, 12)
 
@@ -163,14 +164,14 @@ Top.BackgroundTransparency = 1
 Top.Position = UDim2.new(0, 0, 0, -5)
 Top.Size = UDim2.new(1, 0, 0, 10)
 Top.Image = "rbxassetid://2851926732"
-Top.ImageColor3 = Color3.new(0.160784, 0.290196, 0.478431)
+Top.ImageColor3 = Color3.new(0.988, 0.678, 0.741)
 Top.ScaleType = Enum.ScaleType.Slice
 Top.SliceCenter = Rect.new(12, 12, 12, 12)
 
 Tabs.Name = "Tabs"
 Tabs.Parent = Window
-Tabs.BackgroundColor3 = Color3.new(1, 1, 1)
-Tabs.BackgroundTransparency = 1
+Tabs.BackgroundColor3 = Color3.new(0.996, 0.925, 0.941)  -- Very light pink
+Tabs.BackgroundTransparency = 0.9  -- Mostly transparent
 Tabs.Position = UDim2.new(0, 15, 0, 60)
 Tabs.Size = UDim2.new(1, -30, 1, -60)
 
@@ -181,8 +182,8 @@ Title.BackgroundTransparency = 1
 Title.Position = UDim2.new(0, 30, 0, 3)
 Title.Size = UDim2.new(0, 200, 0, 20)
 Title.Font = Enum.Font.GothamBold
-Title.Text = "Gamer Time"
-Title.TextColor3 = Color3.new(1, 1, 1)
+Title.Text = "✿ Mia Script ✿"
+Title.TextColor3 = Color3.new(0.988, 0.678, 0.741)
 Title.TextSize = 14
 Title.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -194,14 +195,14 @@ TabSelection.Position = UDim2.new(0, 15, 0, 30)
 TabSelection.Size = UDim2.new(1, -30, 0, 25)
 TabSelection.Visible = false
 TabSelection.Image = "rbxassetid://2851929490"
-TabSelection.ImageColor3 = Color3.new(0.145098, 0.14902, 0.156863)
+TabSelection.ImageColor3 = Color3.new(0.988, 0.678, 0.741)
 TabSelection.ScaleType = Enum.ScaleType.Slice
 TabSelection.SliceCenter = Rect.new(4, 4, 4, 4)
 
 TabButtons.Name = "TabButtons"
 TabButtons.Parent = TabSelection
-TabButtons.BackgroundColor3 = Color3.new(1, 1, 1)
-TabButtons.BackgroundTransparency = 1
+TabButtons.BackgroundColor3 = Color3.new(0.996, 0.925, 0.941)  -- Very light pink
+TabButtons.BackgroundTransparency = 0.95  -- Almost completely transparent
 TabButtons.Size = UDim2.new(1, 0, 1, 0)
 
 UIListLayout.Parent = TabButtons
@@ -210,8 +211,8 @@ UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 UIListLayout.Padding = UDim.new(0, 2)
 
 Frame.Parent = TabSelection
-Frame.BackgroundColor3 = Color3.new(0.12549, 0.227451, 0.372549)
-Frame.BorderColor3 = Color3.new(0.105882, 0.164706, 0.207843)
+Frame.BackgroundColor3 = Color3.new(0.988, 0.678, 0.741)
+Frame.BorderColor3 = Color3.new(0.933, 0.588, 0.686)
 Frame.BorderSizePixel = 0
 Frame.Position = UDim2.new(0, 0, 1, 0)
 Frame.Size = UDim2.new(1, 0, 0, 2)
@@ -234,10 +235,10 @@ TextBox.BorderSizePixel = 0
 TextBox.Size = UDim2.new(1, 0, 0, 20)
 TextBox.ZIndex = 2
 TextBox.Font = Enum.Font.GothamSemibold
-TextBox.PlaceholderColor3 = Color3.new(0.698039, 0.698039, 0.698039)
-TextBox.PlaceholderText = "Input Text"
+TextBox.PlaceholderColor3 = Color3.new(0.933, 0.788, 0.835)
+TextBox.PlaceholderText = "✿ Input Text ✿"
 TextBox.Text = ""
-TextBox.TextColor3 = Color3.new(0.784314, 0.784314, 0.784314)
+TextBox.TextColor3 = Color3.new(0.988, 0.678, 0.741)
 TextBox.TextSize = 14
 
 TextBox_Roundify_4px.Name = "TextBox_Roundify_4px"
@@ -246,7 +247,7 @@ TextBox_Roundify_4px.BackgroundColor3 = Color3.new(1, 1, 1)
 TextBox_Roundify_4px.BackgroundTransparency = 1
 TextBox_Roundify_4px.Size = UDim2.new(1, 0, 1, 0)
 TextBox_Roundify_4px.Image = "rbxassetid://2851929490"
-TextBox_Roundify_4px.ImageColor3 = Color3.new(0.203922, 0.207843, 0.219608)
+TextBox_Roundify_4px.ImageColor3 = Color3.new(0.933, 0.588, 0.686)
 TextBox_Roundify_4px.ScaleType = Enum.ScaleType.Slice
 TextBox_Roundify_4px.SliceCenter = Rect.new(4, 4, 4, 4)
 
@@ -257,7 +258,7 @@ Slider.BackgroundTransparency = 1
 Slider.Position = UDim2.new(0, 0, 0.178571433, 0)
 Slider.Size = UDim2.new(1, 0, 0, 20)
 Slider.Image = "rbxassetid://2851929490"
-Slider.ImageColor3 = Color3.new(0.145098, 0.14902, 0.156863)
+Slider.ImageColor3 = Color3.new(0.933, 0.588, 0.686)
 Slider.ScaleType = Enum.ScaleType.Slice
 Slider.SliceCenter = Rect.new(4, 4, 4, 4)
 
@@ -269,8 +270,8 @@ Title_2.Position = UDim2.new(0.5, 0, 0.5, -10)
 Title_2.Size = UDim2.new(0, 0, 0, 20)
 Title_2.ZIndex = 2
 Title_2.Font = Enum.Font.GothamBold
-Title_2.Text = "Slider"
-Title_2.TextColor3 = Color3.new(0.784314, 0.784314, 0.784314)
+Title_2.Text = "✿ Slider ✿"
+Title_2.TextColor3 = Color3.new(0.988, 0.678, 0.741)
 Title_2.TextSize = 14
 
 Indicator.Name = "Indicator"
@@ -279,7 +280,7 @@ Indicator.BackgroundColor3 = Color3.new(1, 1, 1)
 Indicator.BackgroundTransparency = 1
 Indicator.Size = UDim2.new(0, 0, 0, 20)
 Indicator.Image = "rbxassetid://2851929490"
-Indicator.ImageColor3 = Color3.new(0.254902, 0.262745, 0.278431)
+Indicator.ImageColor3 = Color3.new(0.988, 0.678, 0.741)
 Indicator.ScaleType = Enum.ScaleType.Slice
 Indicator.SliceCenter = Rect.new(4, 4, 4, 4)
 
@@ -291,7 +292,7 @@ Value.Position = UDim2.new(1, -55, 0.5, -10)
 Value.Size = UDim2.new(0, 50, 0, 20)
 Value.Font = Enum.Font.GothamBold
 Value.Text = "0%"
-Value.TextColor3 = Color3.new(0.784314, 0.784314, 0.784314)
+Value.TextColor3 = Color3.new(0.988, 0.678, 0.741)
 Value.TextSize = 14
 
 TextLabel.Parent = Slider
@@ -300,8 +301,8 @@ TextLabel.BackgroundTransparency = 1
 TextLabel.Position = UDim2.new(1, -20, -0.75, 0)
 TextLabel.Size = UDim2.new(0, 26, 0, 50)
 TextLabel.Font = Enum.Font.GothamBold
-TextLabel.Text = "]"
-TextLabel.TextColor3 = Color3.new(0.627451, 0.627451, 0.627451)
+TextLabel.Text = "♡"
+TextLabel.TextColor3 = Color3.new(0.988, 0.678, 0.741)
 TextLabel.TextSize = 14
 
 TextLabel_2.Parent = Slider
@@ -310,8 +311,8 @@ TextLabel_2.BackgroundTransparency = 1
 TextLabel_2.Position = UDim2.new(1, -65, -0.75, 0)
 TextLabel_2.Size = UDim2.new(0, 26, 0, 50)
 TextLabel_2.Font = Enum.Font.GothamBold
-TextLabel_2.Text = "["
-TextLabel_2.TextColor3 = Color3.new(0.627451, 0.627451, 0.627451)
+TextLabel_2.Text = "♡"
+TextLabel_2.TextColor3 = Color3.new(0.988, 0.678, 0.741)
 TextLabel_2.TextSize = 14
 
 Circle.Name = "Circle"
@@ -319,6 +320,7 @@ Circle.Parent = Prefabs
 Circle.BackgroundColor3 = Color3.new(1, 1, 1)
 Circle.BackgroundTransparency = 1
 Circle.Image = "rbxassetid://266543268"
+Circle.ImageColor3 = Color3.new(0.988, 0.678, 0.741)
 Circle.ImageTransparency = 0.5
 
 UIListLayout_3.Parent = Prefabs
