@@ -94,6 +94,16 @@ Prefabs.Size = UDim2.new(0, 100, 0, 100)
 Prefabs.Visible = false
 
 
+-- Define a consistent color palette
+local Colors = {
+    primary = Color3.fromRGB(148, 63, 183),     -- Main purple
+    secondary = Color3.fromRGB(252, 173, 189),  -- Pink accent
+    dark = Color3.fromRGB(52, 40, 60),          -- Dark purple background
+    light = Color3.fromRGB(252, 240, 255),      -- Light text
+    highlight = Color3.fromRGB(219, 127, 255),  -- Bright purple highlight
+    shadow = Color3.fromRGB(36, 28, 41)         -- Dark shadow
+}
+
 Label.Name = "Label"
 Label.Parent = Prefabs
 Label.BackgroundColor3 = Color3.new(1, 1, 1)
@@ -101,7 +111,7 @@ Label.BackgroundTransparency = 1
 Label.Size = UDim2.new(0, 200, 0, 20)
 Label.Font = Enum.Font.GothamSemibold
 Label.Text = "Hello, world 123"
-Label.TextColor3 = Color3.new(1, 1, 1)
+Label.TextColor3 = Colors.light
 Label.TextSize = 14
 Label.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -115,7 +125,7 @@ Window.Position = UDim2.new(0, 20, 0, 20)
 Window.Selectable = true
 Window.Size = UDim2.new(0, 200, 0, 200)
 Window.Image = "rbxassetid://2851926732"
-Window.ImageColor3 = Color3.new(0.129, 0.129, 0.129) -- Black
+Window.ImageColor3 = Colors.dark -- Updated to dark purple
 Window.ScaleType = Enum.ScaleType.Slice
 Window.SliceCenter = Rect.new(12, 12, 12, 12)
 
@@ -130,7 +140,7 @@ Resizer.Size = UDim2.new(0, 20, 0, 20)
 
 Bar.Name = "Bar"
 Bar.Parent = Window
-Bar.BackgroundColor3 = Color3.new(0.580, 0.247, 0.717) -- Purple
+Bar.BackgroundColor3 = Colors.primary -- Updated to primary purple
 Bar.BorderSizePixel = 0
 Bar.Position = UDim2.new(0, 0, 0, 5)
 Bar.Size = UDim2.new(1, 0, 0, 15)
@@ -144,16 +154,16 @@ Toggle.Rotation = 90
 Toggle.Size = UDim2.new(0, 20, 0, 20)
 Toggle.ZIndex = 2
 Toggle.Image = "https://www.roblox.com/Thumbs/Asset.ashx?width=420&height=420&assetId=6593682268"
-Toggle.ImageColor3 = Color3.new(0.580, 0.247, 0.717) -- Purple
+Toggle.ImageColor3 = Colors.secondary -- Updated to secondary pink
 
 Base.Name = "Base"
 Base.Parent = Bar
-Base.BackgroundColor3 = Color3.new(0.580, 0.247, 0.717) -- Purple
+Base.BackgroundColor3 = Colors.primary -- Updated to primary purple
 Base.BorderSizePixel = 0
 Base.Position = UDim2.new(0, 0, 0.800000012, 0)
 Base.Size = UDim2.new(1, 0, 0, 10)
 Base.Image = "rbxassetid://2851926732"
-Base.ImageColor3 = Color3.new(0.580, 0.247, 0.717) -- Purple
+Base.ImageColor3 = Colors.primary -- Updated to primary purple
 Base.ScaleType = Enum.ScaleType.Slice
 Base.SliceCenter = Rect.new(12, 12, 12, 12)
 
@@ -164,13 +174,13 @@ Top.BackgroundTransparency = 1
 Top.Position = UDim2.new(0, 0, 0, -5)
 Top.Size = UDim2.new(1, 0, 0, 10)
 Top.Image = "rbxassetid://2851926732"
-Top.ImageColor3 = Color3.new(0.580, 0.247, 0.717) -- Purple
+Top.ImageColor3 = Colors.primary -- Updated to primary purple
 Top.ScaleType = Enum.ScaleType.Slice
 Top.SliceCenter = Rect.new(12, 12, 12, 12)
 
 Tabs.Name = "Tabs"
 Tabs.Parent = Window
-Tabs.BackgroundColor3 = Color3.new(0.129, 0.129, 0.129) -- Black
+Tabs.BackgroundColor3 = Colors.shadow -- Updated to shadow color
 Tabs.BackgroundTransparency = 0.9  -- Mostly transparent
 Tabs.Position = UDim2.new(0, 15, 0, 60)
 Tabs.Size = UDim2.new(1, -30, 1, -60)
@@ -183,7 +193,7 @@ Title.Position = UDim2.new(0, 30, 0, 3)
 Title.Size = UDim2.new(0, 200, 0, 20)
 Title.Font = Enum.Font.GothamBold
 Title.Text = "✿ Brigitte's Script ✿"
-Title.TextColor3 = Color3.new(1, 1, 1) -- White
+Title.TextColor3 = Colors.light -- Updated to light color
 Title.TextSize = 14
 Title.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -195,13 +205,13 @@ TabSelection.Position = UDim2.new(0, 15, 0, 30)
 TabSelection.Size = UDim2.new(1, -30, 0, 25)
 TabSelection.Visible = false
 TabSelection.Image = "rbxassetid://2851929490"
-TabSelection.ImageColor3 = Color3.new(0.580, 0.247, 0.717) -- Purple
+TabSelection.ImageColor3 = Colors.primary -- Updated to primary purple
 TabSelection.ScaleType = Enum.ScaleType.Slice
 TabSelection.SliceCenter = Rect.new(4, 4, 4, 4)
 
 TabButtons.Name = "TabButtons"
 TabButtons.Parent = TabSelection
-TabButtons.BackgroundColor3 = Color3.new(0.129, 0.129, 0.129) -- Black
+TabButtons.BackgroundColor3 = Colors.shadow -- Updated to shadow color
 TabButtons.BackgroundTransparency = 0.95  -- Almost completely transparent
 TabButtons.Size = UDim2.new(1, 0, 1, 0)
 
@@ -211,8 +221,8 @@ UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 UIListLayout.Padding = UDim.new(0, 2)
 
 Frame.Parent = TabSelection
-Frame.BackgroundColor3 = Color3.new(0.580, 0.247, 0.717) -- Purple
-Frame.BorderColor3 = Color3.new(0.400, 0.168, 0.494) -- Darker purple
+Frame.BackgroundColor3 = Colors.secondary -- Updated to secondary pink
+Frame.BorderColor3 = Colors.primary -- Updated to primary purple
 Frame.BorderSizePixel = 0
 Frame.Position = UDim2.new(0, 0, 1, 0)
 Frame.Size = UDim2.new(1, 0, 0, 2)
@@ -235,10 +245,10 @@ TextBox.BorderSizePixel = 0
 TextBox.Size = UDim2.new(1, 0, 0, 20)
 TextBox.ZIndex = 2
 TextBox.Font = Enum.Font.GothamSemibold
-TextBox.PlaceholderColor3 = Color3.new(0.698, 0.517, 0.796) -- Light purple
+TextBox.PlaceholderColor3 = Colors.secondary -- Updated to secondary pink
 TextBox.PlaceholderText = "✿ Input Text ✿"
 TextBox.Text = ""
-TextBox.TextColor3 = Color3.new(0.988, 0.678, 0.741)
+TextBox.TextColor3 = Colors.light -- Updated to light color
 TextBox.TextSize = 14
 
 TextBox_Roundify_4px.Name = "TextBox_Roundify_4px"
@@ -247,7 +257,7 @@ TextBox_Roundify_4px.BackgroundColor3 = Color3.new(1, 1, 1)
 TextBox_Roundify_4px.BackgroundTransparency = 1
 TextBox_Roundify_4px.Size = UDim2.new(1, 0, 1, 0)
 TextBox_Roundify_4px.Image = "rbxassetid://2851929490"
-TextBox_Roundify_4px.ImageColor3 = Color3.new(0.203, 0.156, 0.235) -- Dark purple
+TextBox_Roundify_4px.ImageColor3 = Colors.dark -- Updated to dark color
 TextBox_Roundify_4px.ScaleType = Enum.ScaleType.Slice
 TextBox_Roundify_4px.SliceCenter = Rect.new(4, 4, 4, 4)
 
@@ -258,7 +268,7 @@ Slider.BackgroundTransparency = 1
 Slider.Position = UDim2.new(0, 0, 0.178571433, 0)
 Slider.Size = UDim2.new(1, 0, 0, 20)
 Slider.Image = "rbxassetid://2851929490"
-Slider.ImageColor3 = Color3.new(0.203, 0.156, 0.235) -- Dark purple
+Slider.ImageColor3 = Colors.dark -- Updated to dark color
 Slider.ScaleType = Enum.ScaleType.Slice
 Slider.SliceCenter = Rect.new(4, 4, 4, 4)
 
@@ -271,7 +281,7 @@ Title_2.Size = UDim2.new(0, 0, 0, 20)
 Title_2.ZIndex = 2
 Title_2.Font = Enum.Font.GothamBold
 Title_2.Text = "✿ Slider ✿"
-Title_2.TextColor3 = Color3.new(0.580, 0.247, 0.717) -- Purple
+Title_2.TextColor3 = Colors.highlight -- Updated to highlight color
 Title_2.TextSize = 14
 
 Indicator.Name = "Indicator"
@@ -280,7 +290,7 @@ Indicator.BackgroundColor3 = Color3.new(1, 1, 1)
 Indicator.BackgroundTransparency = 1
 Indicator.Size = UDim2.new(0, 0, 0, 20)
 Indicator.Image = "rbxassetid://2851929490"
-Indicator.ImageColor3 = Color3.new(0.580, 0.247, 0.717) -- Purple
+Indicator.ImageColor3 = Colors.secondary -- Updated to secondary pink
 Indicator.ScaleType = Enum.ScaleType.Slice
 Indicator.SliceCenter = Rect.new(4, 4, 4, 4)
 
@@ -292,7 +302,7 @@ Value.Position = UDim2.new(1, -55, 0.5, -10)
 Value.Size = UDim2.new(0, 50, 0, 20)
 Value.Font = Enum.Font.GothamBold
 Value.Text = "0%"
-Value.TextColor3 = Color3.new(0.988, 0.678, 0.741)
+Value.TextColor3 = Colors.secondary -- Updated to secondary pink
 Value.TextSize = 14
 
 TextLabel.Parent = Slider
@@ -302,7 +312,7 @@ TextLabel.Position = UDim2.new(1, -20, -0.75, 0)
 TextLabel.Size = UDim2.new(0, 26, 0, 50)
 TextLabel.Font = Enum.Font.GothamBold
 TextLabel.Text = "♡"
-Value.TextColor3 = Color3.new(0.580, 0.247, 0.717) -- Purple
+TextLabel.TextColor3 = Colors.secondary -- Updated to secondary pink
 TextLabel.TextSize = 14
 
 TextLabel_2.Parent = Slider
@@ -312,7 +322,7 @@ TextLabel_2.Position = UDim2.new(1, -65, -0.75, 0)
 TextLabel_2.Size = UDim2.new(0, 26, 0, 50)
 TextLabel_2.Font = Enum.Font.GothamBold
 TextLabel_2.Text = "♡"
-TextLabel.TextColor3 = Color3.new(0.580, 0.247, 0.717) -- Purple
+TextLabel_2.TextColor3 = Colors.secondary -- Updated to secondary pink
 TextLabel_2.TextSize = 14
 
 Circle.Name = "Circle"
