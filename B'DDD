@@ -413,7 +413,7 @@ TextButton_Roundify_4px_2.SliceCenter = Rect.new(4, 4, 4, 4)
 Folder.Name = "Folder"
 Folder.Parent = Prefabs
 Folder.BackgroundColor3 = Color3.new(1, 1, 1)
-Folder.BackgroundTransparency = 1
+Folder.BackgroundTransparency = 0
 Folder.Position = UDim2.new(0, 0, 0, 50)
 Folder.Size = UDim2.new(0.1, 0, 0, 20)
 Folder.Image = "rbxassetid://2851929490"
@@ -457,7 +457,7 @@ Objects_2.Parent = Folder
 Objects_2.BackgroundColor3 = Color3.new(1, 1, 1)
 Objects_2.BackgroundTransparency = 1
 Objects_2.Position = UDim2.new(0, 10, 0, 25)
-Objects_2.Size = UDim2.new(1, -10, 1, -25)
+Objects_2.Size = UDim2.new(0.3, -10, 1, -25)
 Objects_2.Visible = false
 
 UIListLayout_5.Parent = Objects_2
