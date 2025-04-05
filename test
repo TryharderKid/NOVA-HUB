@@ -1,0 +1,306 @@
+-- Load the library and managers
+local Library = loadstring(game:HttpGetAsync("https://github.com/ActualMasterOogway/Fluent-Renewed/releases/latest/download/Fluent.luau"))()
+local SaveManager = loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/ActualMasterOogway/Fluent-Renewed/master/Addons/SaveManager.luau"))()
+local InterfaceManager = loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/ActualMasterOogway/Fluent-Renewed/master/Addons/InterfaceManager.luau"))()
+
+-- Define all available languages
+local Languages = {
+    English = {
+        title = "Lurnai",
+        subtitle = "Private Script",
+        -- Tab titles
+        home = "Home",
+        main = "Main",
+        rebirths = "Rebirths",
+        killer = "Killer",
+        crystal = "Crystal",
+        status = "Status",
+        miscellaneous = "Miscellaneous",
+        settings = "Settings",
+        language = "Language",
+        -- Other translations
+        scriptLoaded = "The script has been loaded."
+    },
+    Spanish = {
+        title = "Lurnai",
+        subtitle = "Script Privado",
+        -- Tab titles
+        home = "Inicio",
+        main = "Principal",
+        rebirths = "Renacimientos",
+        killer = "Asesino",
+        crystal = "Cristal",
+        status = "Estado",
+        miscellaneous = "Misceláneos",
+        settings = "Ajustes",
+        language = "Idioma",
+        -- Other translations
+        scriptLoaded = "El script ha sido cargado."
+    },
+    Portuguese = {
+        title = "Lurnai",
+        subtitle = "Script Privado",
+        -- Tab titles
+        home = "Início",
+        main = "Principal",
+        rebirths = "Renascimentos",
+        killer = "Assassino",
+        crystal = "Cristal",
+        status = "Estado",
+        miscellaneous = "Diversos",
+        settings = "Configurações",
+        language = "Idioma",
+        -- Other translations
+        scriptLoaded = "O script foi carregado."
+    },
+    French = {
+        title = "Lurnai",
+        subtitle = "Script Privé",
+        -- Tab titles
+        home = "Accueil",
+        main = "Principal",
+        rebirths = "Renaissances",
+        killer = "Tueur",
+        crystal = "Cristal",
+        status = "Statut",
+        miscellaneous = "Divers",
+        settings = "Paramètres",
+        language = "Langue",
+        -- Other translations
+        scriptLoaded = "Le script a été chargé."
+    },
+    German = {
+        title = "Lurnai",
+        subtitle = "Privates Skript",
+        -- Tab titles
+        home = "Startseite",
+        main = "Hauptmenü",
+        rebirths = "Wiedergeburten",
+        killer = "Killer",
+        crystal = "Kristall",
+        status = "Status",
+        miscellaneous = "Verschiedenes",
+        settings = "Einstellungen",
+        language = "Sprache",
+        -- Other translations
+        scriptLoaded = "Das Skript wurde geladen."
+    },
+    Italian = {
+        title = "Lurnai",
+        subtitle = "Script Privato",
+        -- Tab titles
+        home = "Home",
+        main = "Principale",
+        rebirths = "Rinascite",
+        killer = "Killer",
+        crystal = "Cristallo",
+        status = "Stato",
+        miscellaneous = "Varie",
+        settings = "Impostazioni",
+        language = "Lingua",
+        -- Other translations
+        scriptLoaded = "Lo script è stato caricato."
+    },
+    Russian = {
+        title = "Lurnai",
+        subtitle = "Частный Скрипт",
+        -- Tab titles
+        home = "Главная",
+        main = "Основное",
+        rebirths = "Перерождения",
+        killer = "Убийца",
+        crystal = "Кристалл",
+        status = "Статус",
+        miscellaneous = "Разное",
+        settings = "Настройки",
+        language = "Язык",
+        -- Other translations
+        scriptLoaded = "Скрипт загружен."
+    },
+    Chinese = {
+        title = "Lurnai",
+        subtitle = "私人脚本",
+        -- Tab titles
+        home = "首页",
+        main = "主要",
+        rebirths = "重生",
+        killer = "杀手",
+        crystal = "水晶",
+        status = "状态",
+        miscellaneous = "杂项",
+        settings = "设置",
+        language = "语言",
+        -- Other translations
+        scriptLoaded = "脚本已加载。"
+    },
+    Japanese = {
+        title = "Lurnai",
+        subtitle = "プライベートスクリプト",
+        -- Tab titles
+        home = "ホーム",
+        main = "メイン",
+        rebirths = "リバース",
+        killer = "キラー",
+        crystal = "クリスタル",
+        status = "ステータス",
+        miscellaneous = "その他",
+        settings = "設定",
+        language = "言語",
+        -- Other translations
+        scriptLoaded = "スクリプトが読み込まれました。"
+    },
+    Korean = {
+        title = "Lurnai",
+        subtitle = "비공개 스크립트",
+        -- Tab titles
+        home = "홈",
+        main = "메인",
+        rebirths = "환생",
+        killer = "킬러",
+        crystal = "크리스탈",
+        status = "상태",
+        miscellaneous = "기타",
+        settings = "설정",
+        language = "언어",
+        -- Other translations
+        scriptLoaded = "스크립트가 로드되었습니다."
+    },
+    Thai = {
+        title = "Lurnai",
+        subtitle = "สคริปต์ส่วนตัว",
+        -- Tab titles
+        home = "หน้าหลัก",
+        main = "หลัก",
+        rebirths = "การเกิดใหม่",
+        killer = "นักฆ่า",
+        crystal = "คริสตัล",
+        status = "สถานะ",
+        miscellaneous = "เบ็ดเตล็ด",
+        settings = "การตั้งค่า",
+        language = "ภาษา",
+        -- Other translations
+        scriptLoaded = "โหลดสคริปต์แล้ว"
+    }
+}
+
+-- Set default language
+local CurrentLanguage = "English"
+
+-- Function to get translated text
+function GetTranslation(key)
+    if Languages[CurrentLanguage] and Languages[CurrentLanguage][key] then
+        return Languages[CurrentLanguage][key]
+    else
+        -- Fallback to English if translation is missing
+        return Languages["English"][key] or key
+    end
+end
+
+-- Load saved language preference if available
+SaveManager:SetLibrary(Library)
+InterfaceManager:SetLibrary(Library)
+SaveManager:IgnoreThemeSettings()
+SaveManager:SetIgnoreIndexes({"LanguageSelector"})
+InterfaceManager:SetFolder("LurnaiUpdate")
+SaveManager:SetFolder("LurnaiUpdate")
+SaveManager:Load()
+
+-- Check if we have a saved language
+if Library.Options and Library.Options.LanguageSelector and Library.Options.LanguageSelector.Value then
+    local savedLanguage = Library.Options.LanguageSelector.Value
+    if Languages[savedLanguage] then
+        CurrentLanguage = savedLanguage
+    end
+end
+
+-- Create the window
+local Window = Library:CreateWindow{
+    Title = GetTranslation("title"),
+    SubTitle = GetTranslation("subtitle"),
+    TabWidth = 160,
+    Size = UDim2.fromOffset(830, 525),
+    Resize = true,
+    MinSize = Vector2.new(470, 380),
+    Acrylic = true,
+    Theme = "Dark",
+    MinimizeKey = Enum.KeyCode.RightControl
+}
+
+-- Create all tabs with translated titles
+local Tabs = {
+    Home = Window:CreateTab{
+        Title = GetTranslation("home"),
+        Icon = "home"
+    },
+    Main = Window:CreateTab{
+        Title = GetTranslation("main"),
+        Icon = "phosphor-users-bold"
+    },
+    Rebirths = Window:CreateTab{
+        Title = GetTranslation("rebirths"),
+        Icon = "refresh-cw"
+    },
+    Killer = Window:CreateTab{
+        Title = GetTranslation("killer"),
+        Icon = "skull"
+    },
+    Crystal = Window:CreateTab{
+        Title = GetTranslation("crystal"),
+        Icon = "gem"
+    },
+    Status = Window:CreateTab{
+        Title = GetTranslation("status"),
+        Icon = "activity"
+    },
+    Miscellaneous = Window:CreateTab{
+        Title = GetTranslation("miscellaneous"),
+        Icon = "more-horizontal"
+    },
+    Settings = Window:CreateTab{
+        Title = GetTranslation("settings"),
+        Icon = "settings"
+    }
+}
+
+-- Create a language section in the Settings tab
+local LanguageSection = Tabs.Settings:CreateSection(GetTranslation("language"))
+
+-- Create a dropdown for language selection
+local LanguageDropdown = Tabs.Settings:CreateDropdown("LanguageSelector", {
+    Title = GetTranslation("language"),
+    Values = {"English", "Spanish", "Portuguese", "French", "German", "Italian", "Russian", "Chinese", "Japanese", "Korean", "Thai"},
+    Multi = false,
+    Default = CurrentLanguage,
+    Callback = function(Value)
+        if Value ~= CurrentLanguage then
+            CurrentLanguage = Value
+            
+            -- Save the language preference
+            SaveManager:Save()
+            
+            -- Notify the user that they need to restart the script
+            Library:Notify{
+                Title = "Language Changed",
+                Content = "Please restart the script to apply the new language.",
+                Duration = 5
+            }
+        end
+    end
+})
+
+-- Add interface management options and config section
+InterfaceManager:BuildInterfaceSection(Tabs.Settings)
+SaveManager:BuildConfigSection(Tabs.Settings)
+
+-- Select the first tab by default
+Window:SelectTab(1)
+
+-- Show a notification that the script has loaded
+Library:Notify{
+    Title = GetTranslation("title"),
+    Content = GetTranslation("scriptLoaded"),
+    Duration = 5
+}
+
+-- Load autoload config if available
+SaveManager:LoadAutoloadConfig()
