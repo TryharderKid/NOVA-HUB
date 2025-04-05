@@ -1,3 +1,208 @@
+-- Create a language selection UI before loading the main script
+local function CreateLanguageSelectionUI()
+    -- Define available languages with their native names
+    local AvailableLanguages = {
+        ["English"] = "English",
+        ["Spanish"] = "Español",
+        ["Portuguese"] = "Português",
+        ["French"] = "Français",
+        ["German"] = "Deutsch",
+        ["Italian"] = "Italiano",
+        ["Russian"] = "Русский",
+        ["Chinese"] = "中文",
+        ["Japanese"] = "日本語",
+        ["Korean"] = "한국어",
+        ["Thai"] = "ไทย"
+    }
+    
+    -- Create a ScreenGui
+    local ScreenGui = Instance.new("ScreenGui")
+    ScreenGui.Name = "LanguageSelector"
+    ScreenGui.ResetOnSpawn = false
+    ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+    ScreenGui.DisplayOrder = 999
+    
+    -- Create the main frame
+    local MainFrame = Instance.new("Frame")
+    MainFrame.Name = "MainFrame"
+    MainFrame.Size = UDim2.new(0, 300, 0, 350)
+    MainFrame.Position = UDim2.new(0.5, -150, 0.5, -175)
+    MainFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+    MainFrame.BorderSizePixel = 0
+    MainFrame.Parent = ScreenGui
+    
+    -- Add corner radius
+    local UICorner = Instance.new("UICorner")
+    UICorner.CornerRadius = UDim.new(0, 8)
+    UICorner.Parent = MainFrame
+    
+    -- Create title
+    local Title = Instance.new("TextLabel")
+    Title.Name = "Title"
+    Title.Size = UDim2.new(1, 0, 0, 50)
+    Title.Position = UDim2.new(0, 0, 0, 0)
+    Title.BackgroundTransparency = 1
+    Title.Text = "Select Language"
+    Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+    Title.TextSize = 24
+    Title.Font = Enum.Font.GothamBold
+    Title.Parent = MainFrame
+    
+    -- Create subtitle
+    local Subtitle = Instance.new("TextLabel")
+    Subtitle.Name = "Subtitle"
+    Subtitle.Size = UDim2.new(1, 0, 0, 30)
+    Subtitle.Position = UDim2.new(0, 0, 0, 40)
+    Subtitle.BackgroundTransparency = 1
+    Subtitle.Text = "Choose your preferred language"
+    Subtitle.TextColor3 = Color3.fromRGB(200, 200, 200)
+    Subtitle.TextSize = 16
+    Subtitle.Font = Enum.Font.Gotham
+    Subtitle.Parent = MainFrame
+    
+    -- Create scroll frame for languages
+    local ScrollFrame = Instance.new("ScrollingFrame")
+    ScrollFrame.Name = "ScrollFrame"
+    ScrollFrame.Size = UDim2.new(0.9, 0, 0, 200)
+    ScrollFrame.Position = UDim2.new(0.05, 0, 0, 80)
+    ScrollFrame.BackgroundTransparency = 1
+    ScrollFrame.BorderSizePixel = 0
+    ScrollFrame.ScrollBarThickness = 4
+    ScrollFrame.ScrollBarImageColor3 = Color3.fromRGB(100, 100, 100)
+    ScrollFrame.CanvasSize = UDim2.new(0, 0, 0, (#AvailableLanguages * 40))
+    ScrollFrame.Parent = MainFrame
+    
+    -- Create UIListLayout for organizing language buttons
+    local UIListLayout = Instance.new("UIListLayout")
+    UIListLayout.Padding = UDim.new(0, 5)
+    UIListLayout.Parent = ScrollFrame
+    
+    -- Selected language
+    local SelectedLanguage = "English"
+    
+    -- Function to create language buttons
+    local function CreateLanguageButton(language, nativeName, index)
+        local Button = Instance.new("TextButton")
+        Button.Name = language
+        Button.Size = UDim2.new(1, 0, 0, 35)
+        Button.Position = UDim2.new(0, 0, 0, (index - 1) * 40)
+        Button.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+        Button.Text = nativeName
+        Button.TextColor3 = Color3.fromRGB(255, 255, 255)
+        Button.TextSize = 18
+        Button.Font = Enum.Font.Gotham
+        Button.Parent = ScrollFrame
+        
+        -- Add corner radius to button
+        local ButtonCorner = Instance.new("UICorner")
+        ButtonCorner.CornerRadius = UDim.new(0, 6)
+        ButtonCorner.Parent = Button
+        
+        -- Add hover effect
+        Button.MouseEnter:Connect(function()
+            Button.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+        end)
+        
+        Button.MouseLeave:Connect(function()
+            if SelectedLanguage ~= language then
+                Button.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+            else
+                Button.BackgroundColor3 = Color3.fromRGB(0, 120, 215)
+            end
+        end)
+        
+        -- Add click event
+        Button.MouseButton1Click:Connect(function()
+            -- Update selected language
+            SelectedLanguage = language
+            
+            -- Update button colors
+            for _, child in pairs(ScrollFrame:GetChildren()) do
+                if child:IsA("TextButton") then
+                    if child.Name == language then
+                        child.BackgroundColor3 = Color3.fromRGB(0, 120, 215)
+                    else
+                        child.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+                    end
+                end
+            end
+        end)
+        
+        -- Set initial state if this is the default language
+        if language == SelectedLanguage then
+            Button.BackgroundColor3 = Color3.fromRGB(0, 120, 215)
+        end
+        
+        return Button
+    end
+    
+    -- Create buttons for each language
+    local index = 1
+    for language, nativeName in pairs(AvailableLanguages) do
+        CreateLanguageButton(language, nativeName, index)
+        index = index + 1
+    end
+    
+    -- Create confirm button
+    local ConfirmButton = Instance.new("TextButton")
+    ConfirmButton.Name = "ConfirmButton"
+    ConfirmButton.Size = UDim2.new(0.8, 0, 0, 40)
+    ConfirmButton.Position = UDim2.new(0.1, 0, 1, -60)
+    ConfirmButton.BackgroundColor3 = Color3.fromRGB(0, 120, 215)
+    ConfirmButton.Text = "Confirm"
+    ConfirmButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+    ConfirmButton.TextSize = 18
+    ConfirmButton.Font = Enum.Font.GothamBold
+    ConfirmButton.Parent = MainFrame
+    
+    -- Add corner radius to confirm button
+    local ConfirmCorner = Instance.new("UICorner")
+    ConfirmCorner.CornerRadius = UDim.new(0, 6)
+    ConfirmCorner.Parent = ConfirmButton
+    
+    -- Add hover effect to confirm button
+    ConfirmButton.MouseEnter:Connect(function()
+        ConfirmButton.BackgroundColor3 = Color3.fromRGB(0, 100, 180)
+    end)
+    
+    ConfirmButton.MouseLeave:Connect(function()
+        ConfirmButton.BackgroundColor3 = Color3.fromRGB(0, 120, 215)
+    end)
+    
+    -- Parent the ScreenGui to the right place
+    if syn and syn.protect_gui then
+        syn.protect_gui(ScreenGui)
+        ScreenGui.Parent = game:GetService("CoreGui")
+    elseif gethui then
+        ScreenGui.Parent = gethui()
+    else
+        ScreenGui.Parent = game:GetService("CoreGui")
+    end
+    
+    -- Return a promise-like function that resolves with the selected language
+    return function()
+        local selectedLang = nil
+        
+        -- Set up the confirm button click event
+        ConfirmButton.MouseButton1Click:Connect(function()
+            selectedLang = SelectedLanguage
+            ScreenGui:Destroy()
+        end)
+        
+        -- Wait for the user to select a language
+        while not selectedLang do
+            wait(0.1)
+        end
+        
+        return selectedLang
+    end
+end
+
+-- Wait for language selection before loading the main script
+local GetSelectedLanguage = CreateLanguageSelectionUI()
+local SelectedLanguage = GetSelectedLanguage()
+
+-- Now load the main script with the selected language
 -- Load the library and managers
 local Library = loadstring(game:HttpGetAsync("https://github.com/ActualMasterOogway/Fluent-Renewed/releases/latest/download/Fluent.luau"))()
 local SaveManager = loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/ActualMasterOogway/Fluent-Renewed/master/Addons/SaveManager.luau"))()
@@ -183,8 +388,8 @@ local Languages = {
     }
 }
 
--- Set default language
-local CurrentLanguage = "English"
+-- Set default language to the one selected in the pre-script UI
+local CurrentLanguage = SelectedLanguage
 
 -- Function to get translated text
 function GetTranslation(key)
@@ -204,14 +409,6 @@ SaveManager:SetIgnoreIndexes({"LanguageSelector"})
 InterfaceManager:SetFolder("LurnaiUpdate")
 SaveManager:SetFolder("LurnaiUpdate")
 SaveManager:Load()
-
--- Check if we have a saved language
-if Library.Options and Library.Options.LanguageSelector and Library.Options.LanguageSelector.Value then
-    local savedLanguage = Library.Options.LanguageSelector.Value
-    if Languages[savedLanguage] then
-        CurrentLanguage = savedLanguage
-    end
-end
 
 -- Create the window
 local Window = Library:CreateWindow{
