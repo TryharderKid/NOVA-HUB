@@ -67,15 +67,26 @@ local function CreateLanguageSelectionUI()
     ScrollFrame.Position = UDim2.new(0.05, 0, 0, 80)
     ScrollFrame.BackgroundTransparency = 1
     ScrollFrame.BorderSizePixel = 0
-    ScrollFrame.ScrollBarThickness = 4
+    ScrollFrame.ScrollBarThickness = 6
     ScrollFrame.ScrollBarImageColor3 = Color3.fromRGB(100, 100, 100)
-    ScrollFrame.CanvasSize = UDim2.new(0, 0, 0, (#AvailableLanguages * 40))
+    ScrollFrame.CanvasSize = UDim2.new(0, 0, 0, 0) -- Will be set dynamically
+    ScrollFrame.AutomaticCanvasSize = Enum.AutomaticSize.Y -- Enable automatic canvas sizing
+    ScrollFrame.ScrollingDirection = Enum.ScrollingDirection.Y
+    ScrollFrame.ScrollingEnabled = true
     ScrollFrame.Parent = MainFrame
     
     -- Create UIListLayout for organizing language buttons
     local UIListLayout = Instance.new("UIListLayout")
-    UIListLayout.Padding = UDim.new(0, 5)
+    UIListLayout.Padding = UDim.new(0, 8)
+    UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+    UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
     UIListLayout.Parent = ScrollFrame
+    
+    -- Add padding to the scroll frame
+    local UIPadding = Instance.new("UIPadding")
+    UIPadding.PaddingTop = UDim.new(0, 5)
+    UIPadding.PaddingBottom = UDim.new(0, 5)
+    UIPadding.Parent = ScrollFrame
     
     -- Selected language
     local SelectedLanguage = "English"
@@ -84,8 +95,8 @@ local function CreateLanguageSelectionUI()
     local function CreateLanguageButton(language, nativeName, index)
         local Button = Instance.new("TextButton")
         Button.Name = language
-        Button.Size = UDim2.new(1, 0, 0, 35)
-        Button.Position = UDim2.new(0, 0, 0, (index - 1) * 40)
+        Button.Size = UDim2.new(0.95, 0, 0, 35)
+        Button.LayoutOrder = index
         Button.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
         Button.Text = nativeName
         Button.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -168,6 +179,18 @@ local function CreateLanguageSelectionUI()
     ConfirmButton.MouseLeave:Connect(function()
         ConfirmButton.BackgroundColor3 = Color3.fromRGB(0, 120, 215)
     end)
+    
+    -- Add scrolling instructions
+    local ScrollInstructions = Instance.new("TextLabel")
+    ScrollInstructions.Name = "ScrollInstructions"
+    ScrollInstructions.Size = UDim2.new(0.8, 0, 0, 20)
+    ScrollInstructions.Position = UDim2.new(0.1, 0, 1, -90)
+    ScrollInstructions.BackgroundTransparency = 1
+    ScrollInstructions.Text = "Scroll to see more languages"
+    ScrollInstructions.TextColor3 = Color3.fromRGB(180, 180, 180)
+    ScrollInstructions.TextSize = 14
+    ScrollInstructions.Font = Enum.Font.Gotham
+    ScrollInstructions.Parent = MainFrame
     
     -- Parent the ScreenGui to the right place
     if syn and syn.protect_gui then
