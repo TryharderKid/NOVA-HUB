@@ -1,0 +1,69 @@
+local Library = loadstring(game:HttpGetAsync("https://github.com/ActualMasterOogway/Fluent-Renewed/releases/latest/download/Fluent.luau"))()
+local SaveManager = loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/ActualMasterOogway/Fluent-Renewed/master/Addons/SaveManager.luau"))()
+local InterfaceManager = loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/ActualMasterOogway/Fluent-Renewed/master/Addons/InterfaceManager.luau"))()
+
+local InfiniteJumpSetup = loadstring(game:HttpGetAsync("UR GITHUB HERE"))()
+local InfiniteJump = InfiniteJumpSetup()
+
+local Window = Library:CreateWindow{
+    Title = `Fluent {Library.Version}`,
+    SubTitle = "by Actual Master Oogway",
+    TabWidth = 160,
+    Size = UDim2.fromOffset(830, 525),
+    Resize = true,
+    MinSize = Vector2.new(470, 380),
+    Acrylic = true,
+    Theme = "Dark",
+    MinimizeKey = Enum.KeyCode.RightControl
+}
+
+local Tabs = {
+    Main = Window:CreateTab{
+        Title = "Main",
+        Icon = "phosphor-users-bold"
+    },
+    Movement = Window:CreateTab{
+        Title = "Movement",
+        Icon = "phosphor-footprints-bold"
+    },
+    Settings = Window:CreateTab{
+        Title = "Settings",
+        Icon = "settings"
+    }
+}
+
+local Options = Library.Options
+
+local InfJumpToggle = Tabs.Movement:CreateToggle("InfiniteJump", {
+    Title = "Infinite Jump",
+    Description = "",
+    Default = false
+})
+
+InfJumpToggle:OnChanged(function()
+    InfiniteJump.SetEnabled(Options.InfiniteJump.Value)
+    Library:Notify{
+        Title = "Movement",
+        Content = Options.InfiniteJump.Value and "Infinite Jump Enabled" or "Infinite Jump Disabled",
+        Duration = 2
+    }
+end)
+
+
+SaveManager:SetLibrary(Library)
+InterfaceManager:SetLibrary(Library)
+SaveManager:IgnoreThemeSettings()
+SaveManager:SetIgnoreIndexes{}
+InterfaceManager:SetFolder("FluentScriptHub")
+SaveManager:SetFolder("FluentScriptHub/specific-game")
+InterfaceManager:BuildInterfaceSection(Tabs.Settings)
+SaveManager:BuildConfigSection(Tabs.Settings)
+Window:SelectTab(1)
+
+Library:Notify{
+    Title = "Fluent",
+    Content = "The script has been loaded.",
+    Duration = 8
+}
+
+SaveManager:LoadAutoloadConfig()
