@@ -2,7 +2,7 @@ local Library = loadstring(game:HttpGetAsync("https://github.com/ActualMasterOog
 local SaveManager = loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/ActualMasterOogway/Fluent-Renewed/master/Addons/SaveManager.luau"))()
 local InterfaceManager = loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/ActualMasterOogway/Fluent-Renewed/master/Addons/InterfaceManager.luau"))()
 
-local InfiniteJumpSetup = loadstring(game:HttpGetAsync("UR GITHUB HERE"))()
+local InfiniteJumpSetup = loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/TryharderKid/NOVA-HUB/refs/heads/main/Inf%20jump%20(Github).txt"))()
 local InfiniteJump = InfiniteJumpSetup()
 
 local Window = Library:CreateWindow{
