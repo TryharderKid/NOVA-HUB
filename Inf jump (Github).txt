@@ -1,21 +1,63 @@
 local InfiniteJumpEnabled = false
 
 local function SetupInfiniteJump()
-    local Player = game:GetService("Players").LocalPlayer
+    local Players = game:GetService("Players")
+    local Player = Players.LocalPlayer
     local UserInputService = game:GetService("UserInputService")
     
+    local whitelist = {
+      "shadow_ripperz0" -- IBlameHaz Put ur roblox username here (IN LOWERCASE)
+    }
+    
+    for i, name in ipairs(whitelist) do
+        whitelist[i] = string.lower(name)
+    end
+    
+    local function isWhitelisted(player)
+        local playerName = string.lower(player.Name)
+        for _, name in ipairs(whitelist) do
+            if playerName == name then
+                return true
+            end
+        end
+        return false
+    end
+    
+    local playerWhitelisted = isWhitelisted(Player)
+    
+    if not playerWhitelisted then
+        local notification = Instance.new("Message")
+        notification.Text = "Imagine not being whitelisted"
+        notification.Parent = game.Workspace
+        wait(3)
+        notification:Destroy()
+        return {
+            SetEnabled = function() end,
+            GetEnabled = function() return false end,
+            IsWhitelisted = function() return false end
+        }
+    end
+    
     UserInputService.JumpRequest:Connect(function()
-        if InfiniteJumpEnabled then
-            Player.Character:FindFirstChildOfClass("Humanoid"):ChangeState("Jumping")
+        if InfiniteJumpEnabled and playerWhitelisted then
+            local character = Player.Character
+            if character and character:FindFirstChildOfClass("Humanoid") then
+                character:FindFirstChildOfClass("Humanoid"):ChangeState("Jumping")
+            end
         end
     end)
     
     return {
         SetEnabled = function(enabled)
-            InfiniteJumpEnabled = enabled
+            if playerWhitelisted then
+                InfiniteJumpEnabled = enabled
+            end
         end,
         GetEnabled = function()
-            return InfiniteJumpEnabled
+            return InfiniteJumpEnabled and playerWhitelisted
+        end,
+        IsWhitelisted = function()
+            return playerWhitelisted
         end
     }
 end
